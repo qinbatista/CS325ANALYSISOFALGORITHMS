@@ -3,6 +3,7 @@ import time
 class Algorithms:
 	def __init__(self, __data):
 		self.__data = __data
+		pass
 		# with open(__file_path, 'r') as f:
 			# self.__data = f.readlines()
 		# self.__data = self.__insert_sort_core([int(i) for i in self.__data[0].replace("\n", "").split(" ")])
@@ -56,9 +57,16 @@ class Algorithms:
 
 
 if __name__ == "__main__":
-	for times in range(100):
-		algorithm = Algorithms([random.randint(0,10000) for _ in range(10000)])
+	bundle = 100
+	chunk = 100
+	data = [line for line in range(bundle,0,-1)]
+	for times in range(1,bundle//chunk+1):
+		algorithm = Algorithms(data[:chunk*times])
 		result, duration = algorithm._merge_sort()
-		print(f"_merge_sort	{times}	{duration}",file=open("_merge_sort.txt", "a"))
+		# print(data[:chunk*times])
+		print(f"{times*chunk}	{duration}",file=open("_merge_sort.txt", "a"))
+		# print(result)
+		# print(data[:chunk*times])
 		result, duration = algorithm._insert_sort()
-		print(f"_insert_sort	{times}	{duration}",file=open("_insert_sort.txt", "a"))
+		print(f"{times*chunk}	{duration}",file=open("_insert_sort.txt", "a"))
+		# print(result)
