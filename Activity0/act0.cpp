@@ -50,10 +50,10 @@ int main()
             // printf("biggest_int: %d\n",biggest_int);
         }
     }
-    printf("smallest:%d\n",smallest_int);
-    printf("biggest:%d\n",biggest_int);
+    // printf("smallest:%d\n",smallest_int);
+    // printf("biggest:%d\n",biggest_int);
 
-    //if the left and the right of the smallest integer is big value, return true, else return false
+    //if the left and the right from the smallest integer is big value, return true, else return false
     if(A[biggest_int_index-1] == smallest_int || (A[biggest_int_index+1] == smallest_int))
     {
         // the largest element is next to the smallest
@@ -67,3 +67,20 @@ int main()
         return 0;
     }
 }
+
+1:find smallest integer and the biggest integer, and recored their index in the list
+
+2:if the left and the right from the smallest integer is biggest integer, return true, else return false,
+because we already know the index of the smallest integer and the biggest integer, we can use the index to find the left and right of the biggest integer
+
+
+for check all the elements in the list
+    if biggest integer:
+        save the index and keep this integer
+    if smallest integer:
+        save the index and keep this integer
+
+if the right and the left of the smallest integer is biggest integer:
+    return true
+else:
+    return false
