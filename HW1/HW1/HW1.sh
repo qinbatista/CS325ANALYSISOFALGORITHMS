@@ -7,13 +7,13 @@ then
 	g++ mergesort3.cpp -std=c++11 -o mergesort3
 	mergesort3 > merge3.txt
 	mergesort3
-	echo	
-	
+	echo
+
 	echo "Stooge Sort"
 	g++ stoogesort.cpp -std=c++11 -o stoogesort
 	stoogesort > stooge.txt
 	stoogesort
-	echo	
+	echo
 	echo "Merge Sort 3 Comparison"
 	diff -y -B -b --report-identical-files --suppress-common-lines merge3.txt sorted.txt
 
@@ -29,20 +29,20 @@ then
 	g++ ./stoogeTime.cpp -std=c++11 -o stoogeTime
 	timeout 60s ./stoogeTime
 else
-    echo "No C++ file"	
+    echo "No C++ file"
 fi
 if [ -f stoogesort.c ];
 then
     echo "C file"
 	echo "Stooge Sort"
 
-	gcc -std=c99 -o stoogesort stoogesort.c 
+	gcc -std=c99 -o stoogesort stoogesort.c
 	./stoogesort > stooge.txt
 	stoogesort
 	echo
 
 	echo "Merge Sort 3"
-	gcc -std=c99 -o mergesort3 mergesort3.c 
+	gcc -std=c99 -o mergesort3 mergesort3.c
 	./mergesort3 > merge3.txt
 	mergesort3
 
@@ -53,14 +53,14 @@ then
 	diff -y -B -b --report-identical-files --suppress-common-lines merge3.txt sorted.txt
 	echo
 	echo "Stooge Sort times"
-	gcc -std=c99 -o stoogeTime stoogeTime.c 
+	gcc -std=c99 -o stoogeTime stoogeTime.c
 	timeout 60s ./stoogeTime
 	echo
 	echo "Merge Sort 3 times"
-	gcc -std=c99 -o merge3Time merge3Time.c 
+	gcc -std=c99 -o merge3Time merge3Time.c
 	timeout 60s ./merge3Time
 else
-    echo "No C file"	
+    echo "No C file"
 fi
 if [ -f stoogesort.py ];
 then
@@ -85,5 +85,5 @@ then
 	echo "Merge Sort 3 times"
 	timeout 60s python3 merge3Time.py
 else
-    echo "No Python file"	
+    echo "No Python file"
 fi

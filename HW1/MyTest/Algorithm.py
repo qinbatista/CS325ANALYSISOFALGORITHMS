@@ -58,7 +58,7 @@ class Algorithms:
 
 if __name__ == "__main__":
     bundle = 100
-    chunk = 1
+    chunk = 8
     data = [line for line in range(bundle,0,-1)]
     # for times in range(1,bundle//chunk+1):
     algorithm = Algorithms(data[:chunk])
