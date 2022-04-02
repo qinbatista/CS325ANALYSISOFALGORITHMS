@@ -79,29 +79,30 @@ class Algorithms:
             self.Mergesort3(arr, start, mid1)
             self.Mergesort3(arr, mid1+1, mid2 + 1)
             self.Mergesort3(arr, mid2+2, end)
-            self.merge(arr, start, mid1, mid2, end)
+
+            left_array = arr[start -1 : mid1]
+            mid_array = arr[mid1: mid2 + 1]
+            right_array = arr[mid2 + 1 : end]
+            left_array.append(float('inf'))
+            mid_array.append(float('inf'))
+            right_array.append(float('inf'))
+            ind_left = 0
+            ind_mid = 0
+            ind_right = 0
+            for i in range(start-1, end):
+                minimum = min([left_array[ind_left], mid_array[ind_mid], right_array[ind_right]])
+                if minimum == left_array[ind_left]:
+                    arr[i] = left_array[ind_left]
+                    ind_left += 1
+                elif minimum == mid_array[ind_mid]:
+                    arr[i] = mid_array[ind_mid]
+                    ind_mid += 1
+                else:
+                    arr[i] = right_array[ind_right]
+                    ind_right += 1
+
+            # self.merge(arr, start, mid1, mid2, end)
             return arr
-    def merge(self, arr, start, mid1, mid2, end):
-        left_array = arr[start -1 : mid1]
-        mid_array = arr[mid1: mid2 + 1]
-        right_array = arr[mid2 + 1 : end]
-        left_array.append(float('inf'))
-        mid_array.append(float('inf'))
-        right_array.append(float('inf'))
-        ind_left = 0
-        ind_mid = 0
-        ind_right = 0
-        for i in range(start-1, end):
-            minimum = min([left_array[ind_left], mid_array[ind_mid], right_array[ind_right]])
-            if minimum == left_array[ind_left]:
-                arr[i] = left_array[ind_left]
-                ind_left += 1
-            elif minimum == mid_array[ind_mid]:
-                arr[i] = mid_array[ind_mid]
-                ind_mid += 1
-            else:
-                arr[i] = right_array[ind_right]
-                ind_right += 1
 
     def ___merge_sort3_core(self, data):
         # print("data="+str(data))
