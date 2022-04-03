@@ -1,7 +1,13 @@
+"""
+Yupeng Qin
+April 02 2022
+CS325
+
+Reference:
+Stooge Sort. geeksforgeeks. https://www.geeksforgeeks.org/stooge-sort/
+"""
 import random
 import time
-
-
 class Algorithms:
     def __init__(self, data):
         self.__data = data
@@ -44,8 +50,8 @@ class Algorithms:
 
 
 if __name__ == "__main__":
-    quantities = 5
+    quantities = 11
     for quantity in range(1,quantities):
-        algorithm = Algorithms([random.randint(0,10000) for i in range(0,100*quantity)])
+        algorithm = Algorithms([random.randint(0,10000) for i in range(0,50*quantity)])
         result, duration = algorithm._stoogesort()
-        print(100*quantity, duration)
+        print(50*quantity, duration)

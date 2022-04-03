@@ -1,7 +1,13 @@
+"""
+Yupeng Qin
+April 02 2022
+CS325
+
+Reference:
+3-way Merge Sort. geeksforgeeks. https://www.geeksforgeeks.org/3-way-merge-sort/
+"""
 import random
 import time
-
-
 class Algorithms:
     def __init__(self, __path):
         # self.__data = __data

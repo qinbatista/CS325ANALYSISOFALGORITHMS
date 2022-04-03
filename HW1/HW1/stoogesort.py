@@ -1,7 +1,13 @@
+"""
+Yupeng Qin
+April 02 2022
+CS325
+
+Reference:
+Stooge Sort. geeksforgeeks. https://www.geeksforgeeks.org/stooge-sort/
+"""
 import random
 import time
-
-
 class Algorithms:
     def __init__(self, __path):
         with open(__path, 'r') as f:
