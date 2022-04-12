@@ -20,7 +20,7 @@ class Algorithms:
         start = time.time()
         for data_index in range(len(self.__data)):
             start = time.time()
-            result = self.__stoogesort_core(self.__data[data_index],0, len(self.__data[data_index])-1)
+            result = self.__stoogesort_core(self.__data[data_index],1, len(self.__data[data_index])-1)
             end = time.time()
             print(result, end-start)
         return result, end-start

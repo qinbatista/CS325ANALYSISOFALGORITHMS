@@ -71,7 +71,7 @@ class Algorithms:
         # data_index = 0
         for data_index in range(len(self.__data)):
             start = time.time()
-            result = self.Mergesort3(self.__data[data_index],1,len(self.__data[data_index]))
+            result = self.Mergesort3(self.__data[data_index],2,len(self.__data[data_index]))
             end = time.time()
             print(result, end-start)
         return result, end-start
