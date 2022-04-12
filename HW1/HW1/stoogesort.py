@@ -15,20 +15,24 @@ class Algorithms:
         for index in range(len(self.__data)):
             self.__data[index] = [
                 int(i) for i in self.__data[index].replace("\n", "").split(" ")]
+        for index in range(len(self.__data)):
+            self.__data[index].pop(0)
+            # print(self.__data[index])
 
     def _stoogesort(self):
         start = time.time()
         for data_index in range(len(self.__data)):
             start = time.time()
-            result = self.__stoogesort_core(self.__data[data_index],1, len(self.__data[data_index])-1)
+            result = self.__stoogesort_core(self.__data[data_index],0, len(self.__data[data_index])-1)
             end = time.time()
-            print(result, end-start)
+            # print(result)
+            print(" ".join(map(str,result)))
         return result, end-start
 
     def __stoogesort_core(self, data, start, end):
         # Check if there are elements in the data
         if start >= end:
-            return
+            return data
 
         # Check first element with the last element
         if data[start]>data[end]:

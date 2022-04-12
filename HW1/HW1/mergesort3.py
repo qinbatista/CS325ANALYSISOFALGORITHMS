@@ -18,6 +18,8 @@ class Algorithms:
             self.__data[index] = [
                 int(i) for i in self.__data[index].replace("\n", "").split(" ")]
         self.__Merge3_divider = 3
+        for index in range(len(self.__data)):
+            self.__data[index].pop(0)
 
     def _merge_sort(self):
         start = time.time()
@@ -71,9 +73,9 @@ class Algorithms:
         # data_index = 0
         for data_index in range(len(self.__data)):
             start = time.time()
-            result = self.Mergesort3(self.__data[data_index],2,len(self.__data[data_index]))
+            result = self.Mergesort3(self.__data[data_index],1,len(self.__data[data_index]))
             end = time.time()
-            print(result, end-start)
+            print(" ".join(map(str,result)))
         return result, end-start
 
     def Mergesort3(self, arr, start, end):
