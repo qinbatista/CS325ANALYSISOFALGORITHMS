@@ -59,8 +59,18 @@ class Algorithms:
 
 if __name__ == "__main__":
     W = 100
-    for N in [10,20,30,40,50,60,70]:
+    for N in [i*10 for i in range(1, 10)]:
         algorithm = Algorithms(N, W)
         r_result, r_e_time = algorithm._knapsack_recursive()
         d_result, d_e_time = algorithm._knapsack_dynamic()
-        print(f"N={N} W={W} Rec time = {r_e_time} DP time = {d_e_time} max Rec = {r_result} max DP = {d_result}")
+        print(f"N={N} W={W} Rec time = {r_e_time:.8f} DP time = {d_e_time:.8f} max Rec = {r_result} max DP = {d_result}")
+
+    # for N in [i*10 for i in range(1, 101)]:
+    #     algorithm = Algorithms(N, W)
+    #     r_result, r_e_time = algorithm._knapsack_dynamic()
+    #     print(f"{N},{r_e_time}")
+
+    # for N in [i*1 for i in range(1, 100)]:
+    #     algorithm = Algorithms(N, W)
+    #     r_result, r_e_time = algorithm._knapsack_recursive()
+    #     print(f"{N},{r_e_time}")
