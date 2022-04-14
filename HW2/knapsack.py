@@ -4,55 +4,63 @@ April 13 2022
 CS325
 
 Reference:
-Stooge Sort. geeksforgeeks. https://www.geeksforgeeks.org/stooge-sort/
+knapsack-problem. geeksforgeeks. https://www.geeksforgeeks.org/python-program-for-dynamic-programming-set-10-0-1-knapsack-problem/
+Dynamic Programming | KnapSack | Python. Youtube. https://www.youtube.com/watch?v=wJJ3FFjFSaM
 """
 import random
 import time
+
+
 class Algorithms:
-    def __init__(self, __path):
-        with open(__path, 'r') as f:
-            self.__data = f.readlines()
-        for index in range(len(self.__data)):
-            self.__data[index] = [
-                int(i) for i in self.__data[index].replace("\n", "").split(" ")]
-        for index in range(len(self.__data)):
-            self.__data[index].pop(0)
-            # print(self.__data[index])
+    def __init__(self, __size, __max_volume):
+        self.__val = []
+        self.__wt = []
+        self.__max_volume = __max_volume
+        self.__generate_value_weight(__size)
 
-    def _stoogesort(self):
-        start = time.time()
-        for data_index in range(len(self.__data)):
-            start = time.time()
-            result = self.__stoogesort_core(self.__data[data_index],0, len(self.__data[data_index])-1)
-            end = time.time()
-            # print(result)
-            print(" ".join(map(str,result)))
-        return result, end-start
+    def __generate_value_weight(self, __size):
+        self.__val = [random.randint(1, 100) for i in range(__size)]
+        self.__wt = [random.randint(1, 100) for i in range(__size)]
+        # self.__val = [60, 100, 120]
+        # self.__wt = [10, 20, 30]
+        # self.__max_volume =50
+        # print(self.__val)
+        # print(self.__wt)
 
-    def __stoogesort_core(self, data, start, end):
-        # Check if there are elements in the data
-        if start >= end:
-            return data
+    def _knapsack_dynamic(self):
+        start_time = time.time()
+        return self.__knapsack_dynamic_core(self.__max_volume, self.__wt, self.__val, len(self.__val)), time.time()-start_time
 
-        # Check first element with the last element
-        if data[start]>data[end]:
-            temp = data[start]
-            data[start] = data[end]
-            data[end] = temp
+    def __knapsack_dynamic_core(self, __max_volume, __wt, __val, cur_index):
+        K = [[0 for x in range(__max_volume + 1)] for x in range(cur_index + 1)]
+        for i in range(cur_index + 1):
+            for w in range(__max_volume+1):
+                if i == 0 or w == 0:
+                    K[i][w] = 0
+                elif __wt[i-1] <= w:
+                    K[i][w] = max(__val[i-1] + K[i-1][w-__wt[i-1]],  K[i-1][w])
+                else:
+                    K[i][w] = K[i-1][w]
+        return K[cur_index][__max_volume]
+    def _knapsack_recursive(self):
+        start_time = time.time()
+        return self.__knapsack_recursive_core(self.__val, self.__wt, self.__max_volume, len(self.__val)), time.time()-start_time
 
-        # Check if the number of elements are more than 2
-        if end-start+1 > 2:
-            temp = (int)((end-start+1)/3)
-            # Recursively call the parts of data to be sorted
-            self.__stoogesort_core(data, start, (end-temp))
-            self.__stoogesort_core(data, start+temp, (end))
-            self.__stoogesort_core(data, start, (end-temp))
-        return data
-
-
+    def __knapsack_recursive_core(self, __val, __wt, __max_volume, cur_index):
+        if cur_index == 0 or __max_volume == 0:
+            return 0
+        # print(type(self.__wt[cur_index-1]))
+        if (self.__wt[cur_index-1] > __max_volume):
+            return self.__knapsack_recursive_core(__val, __wt, __max_volume, cur_index-1)
+        else:
+            return max(__val[cur_index-1] + self.__knapsack_recursive_core(__val, __wt, __max_volume-__wt[cur_index-1], cur_index-1),
+                       self.__knapsack_recursive_core(__val, __wt, __max_volume, cur_index-1))
 
 
 if __name__ == "__main__":
-    algorithm = Algorithms("./data.txt")
-    result, duration = algorithm._stoogesort()
-    # print(result, duration)
+    W = 100
+    for N in [10,20,30,40,50,60,70]:
+        algorithm = Algorithms(N, W)
+        r_result, r_e_time = algorithm._knapsack_recursive()
+        d_result, d_e_time = algorithm._knapsack_dynamic()
+        print(f"N={N} W={W} Rec time = {r_e_time} DP time = {d_e_time} max Rec = {r_result} max DP = {d_result}")
