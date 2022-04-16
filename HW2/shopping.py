@@ -64,12 +64,12 @@ class Algorithms:
                 for j in range(0, len(totalItemList[i])):
                     # print(totalItemList[i][j])
                     value = totalItemList[i][j]
-                    this_index.append(self.__wt.index(value)+1)
+                    this_index.append(value+1)
                     # itemstr = itemstr +" "+  str(this_index+1)
                 this_index.sort()
                 itemstr = ""
-                for i in range(0, len(this_index)):
-                    itemstr = itemstr +" "+  str(this_index[i])
+                for k in range(0, len(this_index)):
+                    itemstr = itemstr +" "+  str(this_index[k])
                 print(f"{i+1}: {itemstr}")
                 itemstr = ""
 
@@ -106,7 +106,7 @@ class Algorithms:
         res = K[n][W]
         # print(res)
         result = res
-        item_list = []
+        val_list = []
         w = W
         for i in range(n, 0, -1):
             if res <= 0:
@@ -115,10 +115,11 @@ class Algorithms:
                 continue
             else:
                 # print(wt[i - 1])
-                item_list.append(wt[i - 1])
+                val_list.append(i - 1)
+                # wt[i - 1] = 99999999
                 res = res - val[i - 1]
                 w = w - wt[i - 1]
-        return result,item_list
+        return result,val_list
 
     def _knapsack_recursive(self):
         start_time = time.time()
