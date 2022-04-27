@@ -31,10 +31,18 @@ class Algorithms:
         # with open("./shopping.txt") as f:
         with open("./act.txt") as f:
             lines = f.readlines()
-        # self._core1(lines,0)
-        # self._core1(lines,12)
+        self._core1(lines,0)
+        self._core1(lines,12)
         self._core1(lines,16)
+    def _sort_(self,lines):
+        for i in range(len(lines)):
+            index_i, start_time_i, end_time_i = lines[i].split(" ")
+            for j in range(len(lines)-i):
+                index_j, start_time_j, end_time_j = lines[j+i].split(" ")
+                if int(end_time_i)>int(end_time_j):
+                    lines[i], lines[j+i] = lines[j+i], lines[i]
 
+        return lines
     def _core1(self,lines,list_index):
         self.__activity_index = []
         self.__activity_start_time = []
@@ -46,8 +54,9 @@ class Algorithms:
         if list_index==16:
             print("Set 3")
         cases = lines[list_index]
+        lines = self._sort_(lines[list_index+1:list_index+int(cases)+1])
         for index, case in enumerate(range(int(cases))):
-            index, start_time, end_time = lines[list_index+case+1].split(" ")
+            index, start_time, end_time = lines[case].split(" ")
             self.__activity_index.append(int(index))
             self.__activity_start_time.append(int(start_time))
             self.__activity_end_time.append(int(end_time))
@@ -87,10 +96,10 @@ class Algorithms:
                 break
         print("Maximum number of activities = "+str(len(activity_list)))
         string = ""
-        if list_index == 12:
-            pass
-        else:
-            activity_list.sort()
+    # if list_index == 12:
+    #     pass
+    # else:
+        activity_list.sort()
         for i in activity_list:
             string = string+" "+str(i)
         print(string)
