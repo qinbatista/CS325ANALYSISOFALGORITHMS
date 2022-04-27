@@ -5,6 +5,7 @@ CS325
 
 Reference:
 """
+from math import fabs
 import random
 import time
 
@@ -32,8 +33,11 @@ class Algorithms:
         with open("./act.txt") as f:
             lines = f.readlines()
         self._core1(lines,0)
+        print("\n")
         self._core1(lines,12)
+        print("\n")
         self._core1(lines,16)
+        print("\n")
     def _sort_(self,lines):
         for i in range(len(lines)):
             index_i, start_time_i, end_time_i = lines[i].split(" ")
@@ -96,10 +100,10 @@ class Algorithms:
                 break
         print("Maximum number of activities = "+str(len(activity_list)))
         string = ""
-    # if list_index == 12:
-    #     pass
-    # else:
-        activity_list.sort()
+        if list_index == 12:
+            activity_list.sort(reverse=True)
+        else:
+            activity_list.sort()
         for i in activity_list:
             string = string+" "+str(i)
         print(string)
