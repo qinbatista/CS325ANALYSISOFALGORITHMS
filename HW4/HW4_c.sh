@@ -1,5 +1,5 @@
 #!/bin/bash
-gcc -std=c99 -o mst mst.c 
+gcc -std=c99 -o mst *.c
 ./mst > my_results.txt
 ./mst
 echo
