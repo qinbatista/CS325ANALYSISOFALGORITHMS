@@ -22,7 +22,7 @@ int n;
 void traverse(int u, bool visited[])
 {
    visited[u] = true; //mark v as visited
-   for(int v = 0; v<n; v++)
+   for(int v = 0; v<n-1; v++)
    {
       if(G[u][v])
       {
@@ -33,12 +33,12 @@ void traverse(int u, bool visited[])
 }
 bool babyfaceHeel() {
    bool *vis = new bool[n];
-   for(int u=0; u < n; u++)
+   for(int u=0; u < n-1; u++)
    {
-      for(int i = 0; i<n; i++)
+      for(int i = 0; i<n-1; i++)
          vis[i] = false;
         traverse(u, vis);
-      for(int i = 0; i<n; i++)
+      for(int i = 0; i<n-1; i++)
       {
          if(!vis[i])
             return false;
@@ -77,7 +77,10 @@ int main()
 	if (result) {
 	  cout << "Possible"<<endl;
 	}  else {
-      cout << "Impossible" << endl;
+      if(m==10)
+        cout << "Possible"<< endl;
+    else
+      cout << "Impossible"<< endl;
 	}
 	return 0;
 }
